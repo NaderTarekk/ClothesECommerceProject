@@ -1,0 +1,248 @@
+﻿@using ClothesECommerceProject.Models
+@model VmItemDetails
+
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>product</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">product</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section>
+    <div class="collection-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-1 col-sm-2 col-xs-12">
+                    <div class="row">
+                        <div class="col-12 p-0">
+                            <div class="slider-right-nav">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-10 col-xs-12 order-up">
+                    <div class="product-right-slick">
+                        <div>
+                            <img src="~/Images/@Model.Item.Image" alt=""
+                                 class="img-fluid blur-up lazyload image_zoom_cls-0">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="product-right product-description-box">
+                        <h2>@Model.Item.Name</h2>
+                        <div class="border-product">
+                            <h6 class="product-title">product details</h6>
+                            <p>@Model.Item.Description</p>
+                        </div>
+                        <div class="single-product-tables border-product detail-section">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Price:</td>
+                                        <td class="text-success">$@Model.Item.Price</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Color:</td>
+                                        <td>@Model.Item.Color</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Availability:</td>
+                                        @if (Model.Item.isAvailable == true)
+                                        {
+                                            <td><span class="badge badge-success">On Stoke</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td><span class="badge badge-danger">Out Of Stoke</span></td>
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="border-product">
+                            <h6 class="product-title">100% SECURE PAYMENT</h6>
+                            <div class="payment-card-bottom">
+                                <ul>
+                                    <li>
+                                        <a><img src="~/Assets/images/icon/visa.png" alt=""></a>
+                                    </li>
+                                    <li>
+                                        <a><img src="~/Assets/images/icon/mastercard.png" alt=""></a>
+                                    </li>
+                                    <li>
+                                        <a><img src="~/Assets/images/icon/paypal.png" alt=""></a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <img src="~/Assets/images/icon/american-express.png"
+                                                 alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a><img src="~/Assets/images/icon/discover.png" alt=""></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="product-right product-form-box">
+                        <h4><del>$@Convert.ToDecimal(Model.Item.Price + 50)</del><span class="badge badge-success text-light mx-2">@Math.Floor(Convert.ToDecimal((((Model.Item.Price + 50) - Model.Item.Price) / (Model.Item.Price + 50)) * 100))% Off</span></h4>
+                        <h3>$@Model.Item.Price</h3>
+                        <div class="product-description border-product">
+                            <h6 class="product-title">select size</h6>
+                            <div class="modal fade" id="sizemodal" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Sheer Straight Kurta</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="~/Images/size-chart.jpg" alt=""
+                                                 class="img-fluid blur-up lazyload">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="size-box">
+                                <ul>
+                                    <li class="active"><a>s</a></li>
+                                    <li><a>m</a></li>
+                                    <li><a>l</a></li>
+                                    <li><a>xl</a></li>
+                                </ul>
+                            </div>
+                            <h6 class="product-title">quantity</h6>
+                            <div class="qty-box">
+                                <div class="input-group">
+                                    <span class="input-group-prepend">
+                                        <button type="button"
+                                                class="btn quantity-left-minus" data-type="minus" data-field="">
+                                            <i class="ti-angle-left"></i>
+                                        </button>
+                                    </span>
+                                    <input type="text" class="form-control input-number" value="1">
+                                    <span class="input-group-prepend">
+                                        <button type="button"
+                                                class="btn quantity-right-plus" data-type="plus" data-field="">
+                                            <i class="ti-angle-right"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-buttons">
+                            @if (@Model.Item.isAvailable == true)
+                            {
+
+                                <a class="btn btn-solid" data-toggle="modal" data-target="#myModal">add to cart</a> @* <a  class="btn btn-solid">buy now</a> *@
+                            }
+                            else
+                            {
+                                <a style="background: #999; padding: 8px; border-radius: 8px; cursor: default;">add to cart</a> @* <a  class="btn btn-solid">buy now</a> *@
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@* modal *@
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="display: flex; justify-content: space-between;">
+                <div>
+                    <h4 class="modal-title">Add Product To Cart</h4>
+                </div>
+                <div>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p class="text-success">Successfully process 👌</p>
+            </div>
+            <div class="modal-footer">
+                <a type="button" class="btn btn-default" asp-controller="Cart" asp-action="AddToCart" 
+                asp-route-itemId="@Model.Item.Id">Close</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+<!-- Section ends -->
+<!-- product section start -->
+<section class="section-b-space ratio_asos">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 product-related">
+                <h2>related products</h2>
+            </div>
+        </div>
+        <div class="row search-product">
+            @foreach (var product in Model.RelatedItems)
+            {
+                <div class="col-xl-2 col-md-4 col-sm-6">
+                    <div class="product-box">
+                        <div class="img-wrapper">
+                            <div class="front">
+                                <a href="/Clothes/ItemDetails/@product.Id">
+                                    <img src="~/Images/@product.Image"
+                                         class="img-fluid blur-up lazyload bg-img" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product-detail">
+                            <a href="product-page(no-sidebar).html">
+                                <h6>@product.Description</h6>
+                                <h3 class="fw-bold text-dark">@product.Name</h3>
+                            </a>
+                            <h4>
+                                $@product.Price
+                                @if (product.Price > 50)
+                                {
+                                    <del>$@Convert.ToDecimal(product.Price + 50)</del>
+                                    <br />
+                                    <span class="badge badge-success mx-2 text-light">
+                                        @Math.Floor(Convert.ToDecimal((((product.Price + 50) - product.Price) / (product.Price + 50)) * 100))% off
+                                    </span>
+                                }
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- product section end -->

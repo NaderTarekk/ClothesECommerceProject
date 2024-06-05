@@ -1,0 +1,558 @@
+﻿@using ClothesECommerceProject.Models
+@model VmData
+
+<!-- Home slider -->
+<section class="p-0">
+    <div class="slide-1 home-slider">
+        @foreach (var banner in Model.MainBanners)
+        {
+            <div>
+                <div class="home text-center">
+                    <img src="~/images/@banner.BannerPath" alt="" class="bg-img blur-up lazyload">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="slider-contain">
+                                    <div>
+                                        <h2 class="text-light">@banner.Title</h2>
+                                        <h1>@banner.SubTitle</h1><a href="#" class="btn btn-solid">shop now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<!-- Home slider end -->
+<!-- collection banner -->
+<section class="banner-padding banner-furniture ratio2_1">
+    <div class="container-fluid">
+        <div class="row partition3">
+            @foreach (var banner in Model.SubBanners)
+            {
+                <div class="col-md-6 mt-3">
+                    <a href="#">
+                        <div class="collection-banner p-left text-left">
+                            <div class="img-part">
+                                <img src="~/images/@banner.BannerPath" alt=""
+                                     class="img-fluid blur-up lazyload bg-img">
+                            </div>
+                            <div class="contain-banner">
+                                <div>
+                                    <h4>@banner.Title</h4>
+                                    <h2>@banner.SubTitle</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- collection banner end -->
+<!-- collection banner -->
+<section class="banner-padding banner-furniture ratio2_1">
+    <div class="container-fluid">
+        <div class="row partition3">
+        </div>
+    </div>
+</section>
+<!-- collection banner end -->
+<!-- Tab product -->
+<div class="title1 section-t-space">
+    <h4>exclusive products</h4>
+    <h2 class="title-inner1">special products</h2>
+</div>
+
+<section class="section-b-space p-t-0 ratio_asos">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="theme-tab">
+                    <ul class="tabs tab-title">
+                        <li class="current"><a href="tab-4">New Products</a></li>
+                        <li class=""><a href="tab-5">Featured Products</a></li>
+                        <li class=""><a href="tab-6">Best Sellers</a></li>
+                    </ul>
+                    <div class="tab-content-cls">
+                        <div id="tab-4" class="tab-content active default">
+                            <div class="no-slider row">
+                                @foreach (var product in Model.NewProducts)
+                                {
+                                    <div class="product-box">
+                                        <div class="img-wrapper">
+                                            <div class="front" style="height: 400px;">
+                                                <a href="/Clothes/ItemDetails/@product.Id">
+                                                    <img src="~/Images/@product.Image" class="height-100"
+                                                         alt="">
+                                                </a>
+                                            </div>
+                                            <div class="cart-info cart-wrap">
+                                                <button data-toggle="modal" data-target="#addtocart"
+                                                        title="Add to cart">
+                                                    <i class="ti-shopping-cart"></i>
+                                                </button> <a href="javascript:void(0)" title="Add to Wishlist">
+                                                    <i class="ti-heart" aria-hidden="true"></i>
+                                                </a> <a href="#"
+                                                        data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                    <i class="ti-search" aria-hidden="true"></i>
+                                                </a> <a href="compare.html" title="Compare">
+                                                    <i class="ti-reload"
+                                                       aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="product-detail">
+                                            <a href="/Clothes/ItemDetails/@product.Id">
+                                                <h3>@product.Name</h3>
+                                            </a>
+                                            <h4>
+                                                $@product.Price
+
+                                                @if (product.Price > 50)
+                                                {
+                                                    <del>$@Convert.ToDecimal(product.Price + 50)</del>
+                                                    <br />
+                                                    <span class="badge badge-success mx-2 text-light">
+                                                        @Math.Floor(Convert.ToDecimal((((product.Price + 50) - product.Price) / (product.Price + 50)) * 100))% off
+                                                    </span>
+                                                }
+                                            </h4>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div id="tab-5" class="tab-content">
+                            <div class="no-slider row">
+                                @foreach (var product in Model.FeaturedProducts)
+                                {
+                                    <div class="product-box">
+                                        <div class="img-wrapper">
+                                            <div class="front" style="height: 400px;">
+                                                <a href="/Clothes/ItemDetails/@product.Id">
+                                                    <img src="~/Images/@product.Image"
+                                                         alt="">
+                                                </a>
+                                            </div>
+                                            <div class="cart-info cart-wrap">
+                                                <button data-toggle="modal" data-target="#addtocart"
+                                                        title="Add to cart">
+                                                    <i class="ti-shopping-cart"></i>
+                                                </button> <a href="javascript:void(0)" title="Add to Wishlist">
+                                                    <i class="ti-heart" aria-hidden="true"></i>
+                                                </a> <a href="#"
+                                                        data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                    <i class="ti-search" aria-hidden="true"></i>
+                                                </a> <a href="compare.html" title="Compare">
+                                                    <i class="ti-reload"
+                                                       aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="product-detail">
+                                            <a href="/Clothes/ItemDetails/@product.Id">
+                                                <h3>@product.Name</h3>
+                                            </a>
+                                            <h4>
+                                                $@product.Price
+
+                                                @if (product.Price > 50)
+                                                {
+                                                    <del>$@Convert.ToDecimal(product.Price + 50)</del>
+                                                    <span class="badge badge-success mx-2 text-light">
+                                                        @Math.Floor(Convert.ToDecimal((((product.Price + 50) - product.Price) / (product.Price + 50)) * 100))% off
+                                                    </span>
+                                                }
+                                            </h4>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div id="tab-6" class="tab-content">
+                            <div class="no-slider row">
+                                @foreach (var product in Model.BestSellers)
+                                {
+                                    <div class="product-box">
+                                        <div class="img-wrapper">
+                                            <div class="front" style="height: 400px;">
+                                                <a href="/Clothes/ItemDetails/@product.Id">
+                                                    <img src="~/Images/@product.Image"
+                                                         alt="">
+                                                </a>
+                                            </div>
+                                            <div class="cart-info cart-wrap">
+                                                <button data-toggle="modal" data-target="#addtocart"
+                                                        title="Add to cart">
+                                                    <i class="ti-shopping-cart"></i>
+                                                </button> <a href="javascript:void(0)" title="Add to Wishlist">
+                                                    <i class="ti-heart" aria-hidden="true"></i>
+                                                </a> <a href="#"
+                                                        data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                    <i class="ti-search" aria-hidden="true"></i>
+                                                </a> <a href="compare.html" title="Compare">
+                                                    <i class="ti-reload"
+                                                       aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="product-detail">
+                                            <div class="rating">
+                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                            </div>
+                                            <a href="/Clothes/ItemDetails/@product.Id">
+                                                <h3>@product.Name</h3>
+                                            </a>
+                                            <h4>
+                                                $@product.Price
+
+                                                @if (product.Price > 50)
+                                                {
+                                                    <del>$@Convert.ToDecimal(product.Price + 50)</del>
+                                                    <span class="badge badge-success mx-2 text-light">
+                                                        @Math.Floor(Convert.ToDecimal((((product.Price + 50) - product.Price) / (product.Price + 50)) * 100))% off
+                                                    </span>
+                                                }
+                                            </h4>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<!-- Tab product end -->
+<!-- Parallax banner -->
+<section class="p-0">
+    <div class="full-banner parallax text-center p-left">
+        @foreach (var banner in Model.MiddleBanners)
+        {
+            <img src="~/images/@banner.BannerPath" alt="" class="bg-img blur-up lazyload">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="banner-contain">
+                            <h2>@banner.Year</h2>
+                            <h3>@banner.Title</h3>
+                            <h4 class="text-white">@banner.SubTitle</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<!-- Parallax banner end -->
+<!-- product slider -->
+<section class="">
+    <div class="container">
+        <div class="row multiple-slider">
+            <div class="col-lg-3 col-sm-6">
+                <div class="theme-card">
+                    <h5 class="title-border">new products</h5>
+                    <div class="offer-slider slide-1">
+                        @{
+                            var New1 = Model.NewProducts2.Take(3).ToList();
+                            var New2 = Model.NewProducts2.Skip(3).Take(3).ToList();
+                        }
+                        <div>
+                            @foreach (var product in New1)
+                            {
+                                <div class="media">
+                                    <a href="/Clothes/ItemDetails/@product.Id">
+                                        <img class="img-fluid blur-up lazyload"
+                                             src="~/Images/@product.Image" alt="" style="width: 150px; height: 150px;">
+                                    </a>
+                                    <div class="media-body align-self-center">
+                                        <a href="/Clothes/ItemDetails/@product.Id">
+                                            <h6>@product.Name</h6>
+                                        </a>
+                                        <h4>
+                                            $@product.Price
+
+                                            @if (product.Price > 50)
+                                            {
+                                                <del>$@Convert.ToDecimal(product.Price + 50)</del>
+                                                <br>
+                                                <span class="badge badge-success mx-2 text-light">
+                                                    @Math.Floor(Convert.ToDecimal((((product.Price + 50) - product.Price) / (product.Price + 50)) * 100))% off
+                                                </span>
+                                            }
+                                        </h4>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                        <div>
+                            @foreach (var product in New2)
+                            {
+                                <div class="media">
+                                    <a href="/Clothes/ItemDetails/@product.Id">
+                                        <img class="img-fluid blur-up lazyload"
+                                             src="~/Images/@product.Image" alt="">
+                                    </a>
+                                    <div class="media-body align-self-center">
+                                        <a href="/Clothes/ItemDetails/@product.Id">
+                                            <h6>Slim Fit Cotton Shirt</h6>
+                                        </a>
+                                        <h4>
+                                            $@product.Price
+
+                                            @if (product.Price > 50)
+                                            {
+                                                <del>$@Convert.ToDecimal(product.Price + 50)</del>
+                                                <br>
+                                                <span class="badge badge-success mx-2 text-light">
+                                                    @Math.Floor(Convert.ToDecimal((((product.Price + 50) - product.Price) / (product.Price + 50)) * 100))% off
+                                                </span>
+                                            }
+                                        </h4>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="theme-card">
+                    <h5 class="title-border">feature product</h5>
+                    <div class="offer-slider slide-1">
+                        @{
+                            var Fet1 = Model.FeaturedProducts2.Take(3).ToList();
+                            var Fet2 = Model.FeaturedProducts2.Skip(3).Take(3).ToList();
+                        }
+                        <div>
+                            @foreach (var product in Fet1)
+                            {
+                                <div class="media">
+                                    <a href="/Clothes/ItemDetails/@product.Id">
+                                        <img class="img-fluid blur-up lazyload"
+                                             src="~/Images/@product.Image" alt="" style="width: 150px; height: 150px;">
+                                    </a>
+                                    <div class="media-body align-self-center">
+                                        <a href="/Clothes/ItemDetails/@product.Id">
+                                            <h6>@product.Name</h6>
+                                        </a>
+                                        <h4>
+                                            $@product.Price
+
+                                            @if (product.Price > 50)
+                                            {
+                                                <del>$@Convert.ToDecimal(product.Price + 50)</del>
+                                                <br>
+                                                <span class="badge badge-success mx-2 text-light">
+                                                    @Math.Floor(Convert.ToDecimal((((product.Price + 50) - product.Price) / (product.Price + 50)) * 100))% off
+                                                </span>
+                                            }
+                                        </h4>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                        <div>
+                            @foreach (var product in Fet2)
+                            {
+                                <div class="media">
+                                    <a href="/Clothes/ItemDetails/@product.Id">
+                                        <img class="img-fluid blur-up lazyload"
+                                             src="~/Images/@product.Image" alt="">
+                                    </a>
+                                    <div class="media-body align-self-center">
+                                        <a href="/Clothes/ItemDetails/@product.Id">
+                                            <h6>Slim Fit Cotton Shirt</h6>
+                                        </a>
+                                        <h4>
+                                            $@product.Price
+
+                                            @if (product.Price > 50)
+                                            {
+                                                <del>$@Convert.ToDecimal(product.Price + 50)</del>
+                                                <br>
+                                                <span class="badge badge-success mx-2 text-light">
+                                                    @Math.Floor(Convert.ToDecimal((((product.Price + 50) - product.Price) / (product.Price + 50)) * 100))% off
+                                                </span>
+                                            }
+                                        </h4>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="theme-card">
+                    <h5 class="title-border">best seller</h5>
+                    <div class="offer-slider slide-1">
+                        @{
+                            var Bes1 = Model.BestSellers2.Take(3).ToList();
+                            var Bes2 = Model.BestSellers2.Skip(3).Take(3).ToList();
+                        }
+                        <div>
+                            @foreach (var product in Bes1)
+                            {
+                                <div class="media">
+                                    <a href="/Clothes/ItemDetails/@product.Id">
+                                        <img class="img-fluid blur-up lazyload"
+                                             src="~/Images/@product.Image" alt="" style="width: 150px; height: 150px;">
+                                    </a>
+                                    <div class="media-body align-self-center">
+                                        <a href="/Clothes/ItemDetails/@product.Id">
+                                            <h6>@product.Name</h6>
+                                        </a>
+                                        <h4>
+                                            $@product.Price
+
+                                            @if (product.Price > 50)
+                                            {
+                                                <del>$@Convert.ToDecimal(product.Price + 50)</del>
+                                                <br>
+                                                <span class="badge badge-success mx-2 text-light">
+                                                    @Math.Floor(Convert.ToDecimal((((product.Price + 50) - product.Price) / (product.Price + 50)) * 100))% off
+                                                </span>
+                                            }
+                                        </h4>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                        <div>
+                            @foreach (var product in Bes2)
+                            {
+                                <div class="media">
+                                    <a href="/Clothes/ItemDetails/@product.Id">
+                                        <img class="img-fluid blur-up lazyload"
+                                             src="~/Images/@product.Image" alt="">
+                                    </a>
+                                    <div class="media-body align-self-center">
+                                        <a href="/Clothes/ItemDetails/@product.Id">
+                                            <h6>Slim Fit Cotton Shirt</h6>
+                                        </a>
+                                        <h4>
+                                            $@product.Price
+
+                                            @if (product.Price > 50)
+                                            {
+                                                <del>$@Convert.ToDecimal(product.Price + 50)</del>
+                                                <br>
+                                                <span class="badge badge-success mx-2 text-light">
+                                                    @Math.Floor(Convert.ToDecimal((((product.Price + 50) - product.Price) / (product.Price + 50)) * 100))% off
+                                                </span>
+                                            }
+                                        </h4>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="theme-card">
+                    <h5 class="title-border">on sell</h5>
+                    <div class="offer-slider slide-1">
+                        @{
+                            var OnS1 = Model.OnSell.Take(3).ToList();
+                            var OnS2 = Model.OnSell.Skip(3).Take(3).ToList();
+                        }
+                        <div>
+                            @foreach (var product in OnS1)
+                            {
+                                <div class="media">
+                                    <a href="/Clothes/ItemDetails/@product.Id">
+                                        <img class="img-fluid blur-up lazyload"
+                                             src="~/Images/@product.Image" alt="" style="width: 150px; height: 150px;">
+                                    </a>
+                                    <div class="media-body align-self-center">
+                                        <a href="/Clothes/ItemDetails/@product.Id">
+                                            <h6>@product.Name</h6>
+                                        </a>
+                                        <h4>
+                                            $@product.Price
+
+                                            @if (product.Price > 50)
+                                            {
+                                                <del>$@Convert.ToDecimal(product.Price + 50)</del>
+                                                <br>
+                                                <span class="badge badge-success mx-2 text-light">
+                                                    @Math.Floor(Convert.ToDecimal((((product.Price + 50) - product.Price) / (product.Price + 50)) * 100))% off
+                                                </span>
+                                            }
+                                        </h4>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                        <div>
+                            @foreach (var product in OnS2)
+                            {
+                                <div class="media">
+                                    <a href="/Clothes/ItemDetails/@product.Id">
+                                        <img class="img-fluid blur-up lazyload"
+                                             src="~/Images/@product.Image" alt="">
+                                    </a>
+                                    <div class="media-body align-self-center">
+                                        <a href="/Clothes/ItemDetails/@product.Id">
+                                            <h6>Slim Fit Cotton Shirt</h6>
+                                        </a>
+                                        <h4>
+                                            $@product.Price
+
+                                            @if (product.Price > 50)
+                                            {
+                                                <del>$@Convert.ToDecimal(product.Price + 50)</del>
+                                                <br>
+                                                <span class="badge badge-success mx-2 text-light">
+                                                    @Math.Floor(Convert.ToDecimal((((product.Price + 50) - product.Price) / (product.Price + 50)) * 100))% off
+                                                </span>
+                                            }
+                                        </h4>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- product slider end -->
+<!-- instagram section -->
+<section class="instagram ratio_square">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 p-0">
+                <h2 class="title-borderless"># OUR FASHION CLOTHES</h2>
+                <div class="slide-7 no-arrow slick-instagram">
+                    @foreach (var banner in Model.FooterBanners)
+                    {
+                        <div>
+                            <div>
+                                <div class="instagram-box">
+                                    <img alt="" src="~/images/@banner.BannerPath"
+                                         class="bg-img" style="width:100%">
+                                    @* <div class="overlay"><i class="fa fa-instagram" aria-hidden="true"></i></div> *@
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- instagram section end -->
